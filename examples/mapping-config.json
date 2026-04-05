@@ -1,0 +1,11 @@
+{
+  "sourceDir": "src",
+  "testDir": "tests",
+  "testPattern": "*.test.ts",
+  "mappings": {
+    "src/auth/login.ts": ["tests/auth/login.test.ts", "tests/e2e/auth-flow.test.ts"],
+    "src/cart/cart-service.ts": ["tests/cart/cart.test.ts"],
+    "src/api/users.ts": ["tests/api/users.test.ts", "tests/api/users-integration.test.ts"],
+    "src/utils/validator.ts": ["tests/utils/validator.test.ts"]
+  }
+}
