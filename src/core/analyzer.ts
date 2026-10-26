@@ -1,12 +1,14 @@
 import { execSync } from 'child_process';
 import { ImpactResult } from './types';
-import { buildFileMap, findAffectedTests } from '../mappers/file-mapper';
+import { buildFileMap, findAffectedTests, listTestFiles } from '../mappers/file-mapper';
 import { MappingConfig } from './types';
 
 export function analyzeImpact(config: MappingConfig, baseBranch = 'main'): ImpactResult {
   const changedFiles = getChangedFiles(baseBranch);
   const mappings = buildFileMap(config);
-  const allTestFiles = mappings.flatMap((m) => m.testFiles);
+  // Every test file counts, including ones with no matching source file; otherwise the
+  // "run all" fallback would silently skip unmapped tests and the totals would be too low.
+  const allTestFiles = [...listTestFiles(config), ...mappings.flatMap((m) => m.testFiles)];
   const uniqueTests = [...new Set(allTestFiles)];
 
   const { affected, skipped, strategy } = findAffectedTests(changedFiles, mappings, uniqueTests);

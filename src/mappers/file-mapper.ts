@@ -35,6 +35,14 @@ export function buildFileMap(config: MappingConfig): FileMapping[] {
 }
 
 /**
+ * Lists every test file under the configured test directory, whether or not it maps to a
+ * source file. This is the full set used for "run everything" and for the savings figure.
+ */
+export function listTestFiles(config: MappingConfig): string[] {
+  return findFiles(config.testDir, config.testPattern);
+}
+
+/**
  * Given a list of changed files, find affected test files.
  */
 export function findAffectedTests(
