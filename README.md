@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/mustafaautomation/test-impact-analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/mustafaautomation/test-impact-analyzer/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 
 Run only the tests affected by your code changes. Maps source files to test files, analyzes git diffs, and outputs the minimal test set. How much CI time this saves depends on how well your source files map to test files; the tool reports the share of tests skipped for each run.
 
