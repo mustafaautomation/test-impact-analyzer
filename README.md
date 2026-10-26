@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 
-Run only the tests affected by your code changes. Maps source files to test files, analyzes git diffs, and outputs the minimal test set. Save 50-80% CI time.
+Run only the tests affected by your code changes. Maps source files to test files, analyzes git diffs, and outputs the minimal test set. How much CI time this saves depends on how well your source files map to test files; the tool reports the share of tests skipped for each run.
 
 ---
 
@@ -24,6 +24,18 @@ git diff main...HEAD → Changed Files → File Mapper → Affected Tests → Ru
 ---
 
 ## Quick Start
+
+Not published to npm; install from source:
+
+```bash
+git clone https://github.com/mustafaautomation/test-impact-analyzer.git
+cd test-impact-analyzer
+npm ci && npm run build
+npm link            # puts the `tia` command on your PATH (or run: node dist/cli.js)
+npm test            # 33 unit tests
+```
+
+Then, from the root of the project you want to analyze:
 
 ```bash
 # Analyze current branch vs main
@@ -79,6 +91,8 @@ test-impact-analyzer/
 │   ├── cli.ts
 │   └── index.ts
 ├── tests/unit/
+│   ├── affected-tests.test.ts # 15 tests — affected-test selection and fallbacks
+│   ├── analyzer.test.ts     # 9 tests — git diff parsing, totals and savings
 │   └── mapper.test.ts       # 9 tests — mapping, config detection, edge cases
 └── .github/workflows/ci.yml
 ```
